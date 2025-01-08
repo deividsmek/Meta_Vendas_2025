@@ -87,4 +87,10 @@ def update_graphs(n_clicks, valor_vendas):
     return fig_diario, fig_anual
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    import os  # Importando para acessar a variável de ambiente
+
+    # Define a porta com base no ambiente (Qoddi fornece a porta através da variável PORT)
+    port = int(os.environ.get('PORT', 8050))  # Se não houver PORT, usa 8050 como padrão localmente
+
+    # Inicializa o servidor Dash com o host '0.0.0.0' para ser acessível externamente e a porta correta
+    app.run_server(debug=True, host='0.0.0.0', port=port)
